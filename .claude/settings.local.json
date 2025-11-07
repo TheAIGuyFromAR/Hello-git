@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(powershell:*)",
+      "Bash(cmd /c \"dir /b \"\"C:\\Program Files\"\" | findstr /i \"\"obs audacity reaper studio vlc parsec tailscale\"\"\")",
+      "Bash(cmd /c \"dir /b \"\"C:\\Program Files (x86)\"\" | findstr /i \"\"obs audacity reaper studio vlc parsec tailscale\"\"\")",
+      "Bash(cmd /c 'choco list --local-only')",
+      "Bash(choco install:*)",
+      "Bash(curl:*)",
+      "Bash(start \"C:\\hicole\\Hello-git\\podcast-guide.html\")",
+      "Bash(start \"C:\\hicole\\Hello-git\\production-scenarios.html\")",
+      "Bash(git add:*)",
+      "Bash(git commit -m \"$(cat <<''EOF''\nAdd complete film podcast production setup with OBS scenarios and Plex integration\n\n- Create beautiful HTML guides with Tailwind CSS for podcast setup\n- Add 2 detailed OBS production scenarios (watch party, talking head/green screen)\n- Include step-by-step equipment setup for Q802USB, XLR mics, webcam, ring light\n- Add Plex server connection guide (theater.castle.emeraldfam.org over Tailscale)\n- Create OBS audio filter setup script with professional podcast settings\n- Add podcast software installer (Discord, Descript, Reaper, Voicemeeter)\n- Remove condenser mic references - focus on dynamic mics (no phantom power)\n- Include film podcast-specific tips: copyright fair use, royalty-free music, workflow\n- Add video production setups: picture-in-picture, chroma key, lighting tips\n- Comprehensive troubleshooting sections with YouTube tutorial links\n\nAll guides are mobile-responsive, beautiful, and include direct links to documentation.\n\n🎬 Generated with Claude Code\nEOF\n)\")"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

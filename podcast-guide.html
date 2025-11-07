@@ -1,0 +1,1480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Film Podcast Setup Guide - Q802USB + OBS for Movie Reviews</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .hero-pattern {
+            background-color: #667eea;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        .smooth-scroll {
+            scroll-behavior: smooth;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #667eea;
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #764ba2;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-weight: 700;
+            font-size: 1.25rem;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 smooth-scroll">
+
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <i class="fas fa-microphone-alt text-purple-600 text-2xl mr-3"></i>
+                    <span class="text-xl font-bold text-gray-800">Podcast Setup Guide</span>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <a href="#quick-start" class="text-gray-600 hover:text-purple-600 transition">Quick Start</a>
+                    <a href="#equipment" class="text-gray-600 hover:text-purple-600 transition">Equipment</a>
+                    <a href="#software" class="text-gray-600 hover:text-purple-600 transition">Software</a>
+                    <a href="#film-podcast-tips" class="text-gray-600 hover:text-purple-600 transition">Film Tips</a>
+                    <a href="#workflow" class="text-gray-600 hover:text-purple-600 transition">Workflow</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="hero-pattern text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+            <div class="text-center">
+                <h1 class="text-5xl font-extrabold mb-4">
+                    <i class="fas fa-film mr-4"></i>Complete Film Podcast Setup Guide
+                </h1>
+                <p class="text-xl text-purple-100 mb-8">
+                    Everything you need to create professional movie review podcasts with your Q802USB mixer
+                </p>
+                <div class="flex justify-center space-x-4">
+                    <a href="#quick-start" class="bg-white text-purple-600 px-8 py-3 rounded-lg font-semibold hover:bg-purple-50 transition shadow-lg">
+                        Get Started <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                    <a href="production-scenarios.html" class="bg-yellow-400 text-yellow-900 px-8 py-3 rounded-lg font-semibold hover:bg-yellow-300 transition shadow-lg">
+                        <i class="fas fa-video mr-2"></i> Production Scenarios
+                    </a>
+                    <a href="#troubleshooting" class="bg-purple-700 text-white px-8 py-3 rounded-lg font-semibold hover:bg-purple-800 transition shadow-lg">
+                        <i class="fas fa-tools mr-2"></i> Troubleshooting
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Stats -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-10">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+            <div class="bg-white rounded-lg shadow-lg p-6 text-center card-hover">
+                <div class="text-4xl text-purple-600 mb-2"><i class="fas fa-check-circle"></i></div>
+                <div class="text-3xl font-bold text-gray-800">5</div>
+                <div class="text-gray-600">Software Installed</div>
+            </div>
+            <div class="bg-white rounded-lg shadow-lg p-6 text-center card-hover">
+                <div class="text-4xl text-green-600 mb-2"><i class="fas fa-sliders-h"></i></div>
+                <div class="text-3xl font-bold text-gray-800">4</div>
+                <div class="text-gray-600">Audio Filters</div>
+            </div>
+            <div class="bg-white rounded-lg shadow-lg p-6 text-center card-hover">
+                <div class="text-4xl text-blue-600 mb-2"><i class="fas fa-clock"></i></div>
+                <div class="text-3xl font-bold text-gray-800">15min</div>
+                <div class="text-gray-600">Setup Time</div>
+            </div>
+            <div class="bg-white rounded-lg shadow-lg p-6 text-center card-hover">
+                <div class="text-4xl text-red-600 mb-2"><i class="fas fa-video"></i></div>
+                <div class="text-3xl font-bold text-gray-800">Pro</div>
+                <div class="text-gray-600">Quality Audio</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+
+        <!-- Quick Start Section -->
+        <section id="quick-start" class="mb-20">
+            <h2 class="text-4xl font-bold text-gray-800 mb-8 flex items-center">
+                <i class="fas fa-rocket text-purple-600 mr-4"></i>
+                Quick Start Guide
+            </h2>
+
+            <div class="bg-white rounded-xl shadow-lg p-8 mb-8">
+                <div class="space-y-6">
+
+                    <!-- Step 1 -->
+                    <div class="flex items-start space-x-4">
+                        <div class="step-number flex-shrink-0">1</div>
+                        <div class="flex-1">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-2">Connect Your Q802USB Mixer</h3>
+                            <p class="text-gray-600 mb-3">
+                                Connect your XLR microphone to Channel 1 and plug in the USB cable to your computer.
+                            </p>
+                            <div class="bg-yellow-50 border-l-4 border-yellow-500 p-4 rounded">
+                                <p class="text-sm text-yellow-800">
+                                    <i class="fas fa-exclamation-triangle mr-2"></i>
+                                    <strong>Important:</strong> Try different USB ports if Windows doesn't detect it. USB 2.0/3.0 ports on the back panel work best!
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="flex items-start space-x-4">
+                        <div class="step-number flex-shrink-0">2</div>
+                        <div class="flex-1">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-2">Configure Windows Sound Settings</h3>
+                            <p class="text-gray-600 mb-3">
+                                Right-click the speaker icon → Sound settings → Under "Input", select "USB Audio CODEC" → Set volume to 100%
+                            </p>
+                            <a href="https://support.microsoft.com/en-us/windows/change-sound-settings-in-windows-8a8f75f1-f4f6-4f1e-8a5b-4f4c4f4c4f4c"
+                               target="_blank"
+                               class="inline-flex items-center text-purple-600 hover:text-purple-800 font-medium">
+                                <i class="fas fa-external-link-alt mr-2"></i>
+                                Windows Sound Settings Guide
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="flex items-start space-x-4">
+                        <div class="step-number flex-shrink-0">3</div>
+                        <div class="flex-1">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-2">Set Up OBS Audio Filters</h3>
+                            <p class="text-gray-600 mb-3">
+                                Open OBS → Right-click "Mic/Aux" in Audio Mixer → Filters → Add: Noise Suppression, Noise Gate, Compressor, Limiter
+                            </p>
+                            <div class="flex space-x-3">
+                                <a href="#obs-filters" class="inline-flex items-center bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition">
+                                    <i class="fas fa-sliders-h mr-2"></i>
+                                    Detailed Filter Settings
+                                </a>
+                                <a href="https://www.youtube.com/results?search_query=obs+audio+filters+tutorial"
+                                   target="_blank"
+                                   class="inline-flex items-center bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition">
+                                    <i class="fab fa-youtube mr-2"></i>
+                                    YouTube Tutorials
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="flex items-start space-x-4">
+                        <div class="step-number flex-shrink-0">4</div>
+                        <div class="flex-1">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-2">Test and Record!</h3>
+                            <p class="text-gray-600 mb-3">
+                                Speak into your mic, watch the levels in OBS (aim for green/yellow, avoid red), then click "Start Recording"
+                            </p>
+                            <div class="bg-green-50 border-l-4 border-green-500 p-4 rounded">
+                                <p class="text-sm text-green-800">
+                                    <i class="fas fa-lightbulb mr-2"></i>
+                                    <strong>Pro Tip:</strong> Always do a 30-second test recording first to check your audio quality!
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Equipment Section -->
+        <section id="equipment" class="mb-20">
+            <h2 class="text-4xl font-bold text-gray-800 mb-8 flex items-center">
+                <i class="fas fa-plug text-purple-600 mr-4"></i>
+                Equipment Setup
+            </h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+                <!-- Q802USB Card -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover">
+                    <div class="bg-gradient-to-r from-purple-600 to-purple-800 p-6 text-white">
+                        <h3 class="text-2xl font-bold flex items-center">
+                            <i class="fas fa-microphone mr-3"></i>
+                            Behringer Q802USB Mixer
+                        </h3>
+                    </div>
+                    <div class="p-6">
+                        <div class="space-y-4">
+                            <div>
+                                <h4 class="font-semibold text-gray-800 mb-2">Physical Connections</h4>
+                                <ul class="space-y-2 text-gray-600">
+                                    <li><i class="fas fa-check text-green-500 mr-2"></i>XLR Mic → Channel 1 (MIC Input)</li>
+                                    <li><i class="fas fa-check text-green-500 mr-2"></i>USB Cable → Computer USB Port</li>
+                                    <li><i class="fas fa-check text-green-500 mr-2"></i>Headphones → PHONES Jack (monitoring)</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800 mb-2">Mixer Settings</h4>
+                                <ul class="space-y-2 text-gray-600">
+                                    <li><i class="fas fa-volume-up text-blue-500 mr-2"></i>GAIN: Start at 12 o'clock</li>
+                                    <li><i class="fas fa-sliders-h text-purple-500 mr-2"></i>Channel Fader: -5 to 0 dB</li>
+                                    <li><i class="fas fa-sliders-h text-purple-500 mr-2"></i>MAIN MIX: 0 dB (75% up)</li>
+                                    <li><i class="fas fa-microphone text-green-500 mr-2"></i>Dynamic XLR mic (no phantom power needed)</li>
+                                </ul>
+                            </div>
+                            <a href="https://www.behringer.com/product.html?modelCode=P0ALZ"
+                               target="_blank"
+                               class="block text-center bg-purple-100 text-purple-700 py-2 rounded-lg hover:bg-purple-200 transition font-medium">
+                                <i class="fas fa-book mr-2"></i>
+                                Official Manual
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- XLR Microphone Card -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover">
+                    <div class="bg-gradient-to-r from-blue-600 to-blue-800 p-6 text-white">
+                        <h3 class="text-2xl font-bold flex items-center">
+                            <i class="fas fa-microphone-alt mr-3"></i>
+                            XLR Microphone Setup
+                        </h3>
+                    </div>
+                    <div class="p-6">
+                        <div class="space-y-4">
+                            <div>
+                                <h4 class="font-semibold text-gray-800 mb-2">Microphone Placement</h4>
+                                <ul class="space-y-2 text-gray-600">
+                                    <li><i class="fas fa-ruler text-orange-500 mr-2"></i>Distance: 6-8 inches from mouth</li>
+                                    <li><i class="fas fa-arrows-alt-h text-orange-500 mr-2"></i>Angle: Slightly off-axis (not directly in front)</li>
+                                    <li><i class="fas fa-filter text-orange-500 mr-2"></i>Use pop filter to reduce plosives (P, B sounds)</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800 mb-2">Dynamic Microphones</h4>
+                                <div class="bg-blue-50 p-4 rounded-lg">
+                                    <div class="font-medium text-blue-900 mb-2">Why Dynamic Mics are Great for Podcasts:</div>
+                                    <ul class="text-sm text-blue-700 space-y-1">
+                                        <li>✓ No phantom power needed - plug and play!</li>
+                                        <li>✓ Excellent for noisy rooms - rejects background noise</li>
+                                        <li>✓ Durable and reliable for daily use</li>
+                                        <li>✓ Great off-axis rejection (only picks up what's in front)</li>
+                                        <li>✓ Popular examples: Shure SM7B, SM58, Audio-Technica ATR2100</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <a href="https://www.youtube.com/results?search_query=xlr+microphone+setup+tutorial"
+                               target="_blank"
+                               class="block text-center bg-red-600 text-white py-2 rounded-lg hover:bg-red-700 transition font-medium">
+                                <i class="fab fa-youtube mr-2"></i>
+                                YouTube Tutorials
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Software Section -->
+        <section id="software" class="mb-20">
+            <h2 class="text-4xl font-bold text-gray-800 mb-8 flex items-center">
+                <i class="fas fa-desktop text-purple-600 mr-4"></i>
+                Installed Software
+            </h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+                <!-- OBS Studio -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover">
+                    <div class="p-6">
+                        <div class="text-4xl text-center mb-4">
+                            <i class="fas fa-video text-purple-600"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-center text-gray-800 mb-2">OBS Studio</h3>
+                        <p class="text-gray-600 text-center mb-4">Recording & Streaming</p>
+                        <div class="space-y-2 mb-4">
+                            <div class="badge bg-green-100 text-green-800 w-full justify-center">
+                                <i class="fas fa-check-circle mr-2"></i>Installed
+                            </div>
+                        </div>
+                        <div class="space-y-2">
+                            <a href="https://obsproject.com/wiki/" target="_blank" class="block text-center bg-purple-100 text-purple-700 py-2 rounded hover:bg-purple-200 transition text-sm">
+                                <i class="fas fa-book mr-1"></i>Documentation
+                            </a>
+                            <a href="https://www.youtube.com/results?search_query=obs+studio+podcast+tutorial" target="_blank" class="block text-center bg-red-100 text-red-700 py-2 rounded hover:bg-red-200 transition text-sm">
+                                <i class="fab fa-youtube mr-1"></i>Tutorials
+                            </a>
+                            <a href="#obs-setup" class="block text-center bg-blue-100 text-blue-700 py-2 rounded hover:bg-blue-200 transition text-sm">
+                                <i class="fas fa-cog mr-1"></i>Setup Guide
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Audacity -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover">
+                    <div class="p-6">
+                        <div class="text-4xl text-center mb-4">
+                            <i class="fas fa-waveform-path text-blue-600"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-center text-gray-800 mb-2">Audacity</h3>
+                        <p class="text-gray-600 text-center mb-4">Audio Editing</p>
+                        <div class="space-y-2 mb-4">
+                            <div class="badge bg-green-100 text-green-800 w-full justify-center">
+                                <i class="fas fa-check-circle mr-2"></i>Installed
+                            </div>
+                        </div>
+                        <div class="space-y-2">
+                            <a href="https://manual.audacityteam.org/" target="_blank" class="block text-center bg-purple-100 text-purple-700 py-2 rounded hover:bg-purple-200 transition text-sm">
+                                <i class="fas fa-book mr-1"></i>Documentation
+                            </a>
+                            <a href="https://www.youtube.com/results?search_query=audacity+podcast+editing" target="_blank" class="block text-center bg-red-100 text-red-700 py-2 rounded hover:bg-red-200 transition text-sm">
+                                <i class="fab fa-youtube mr-1"></i>Tutorials
+                            </a>
+                            <a href="#audacity-guide" class="block text-center bg-blue-100 text-blue-700 py-2 rounded hover:bg-blue-200 transition text-sm">
+                                <i class="fas fa-cog mr-1"></i>Setup Guide
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Discord -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover">
+                    <div class="p-6">
+                        <div class="text-4xl text-center mb-4">
+                            <i class="fab fa-discord text-indigo-600"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-center text-gray-800 mb-2">Discord</h3>
+                        <p class="text-gray-600 text-center mb-4">Remote Guest Calls</p>
+                        <div class="space-y-2 mb-4">
+                            <div class="badge bg-green-100 text-green-800 w-full justify-center">
+                                <i class="fas fa-check-circle mr-2"></i>Installed
+                            </div>
+                        </div>
+                        <div class="space-y-2">
+                            <a href="https://support.discord.com/" target="_blank" class="block text-center bg-purple-100 text-purple-700 py-2 rounded hover:bg-purple-200 transition text-sm">
+                                <i class="fas fa-book mr-1"></i>Documentation
+                            </a>
+                            <a href="https://www.youtube.com/results?search_query=discord+podcast+recording" target="_blank" class="block text-center bg-red-100 text-red-700 py-2 rounded hover:bg-red-200 transition text-sm">
+                                <i class="fab fa-youtube mr-1"></i>Tutorials
+                            </a>
+                            <a href="#discord-guide" class="block text-center bg-blue-100 text-blue-700 py-2 rounded hover:bg-blue-200 transition text-sm">
+                                <i class="fas fa-cog mr-1"></i>Setup Guide
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Reaper -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover">
+                    <div class="p-6">
+                        <div class="text-4xl text-center mb-4">
+                            <i class="fas fa-music text-orange-600"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-center text-gray-800 mb-2">Reaper</h3>
+                        <p class="text-gray-600 text-center mb-4">Professional DAW</p>
+                        <div class="space-y-2 mb-4">
+                            <div class="badge bg-green-100 text-green-800 w-full justify-center">
+                                <i class="fas fa-check-circle mr-2"></i>Installed
+                            </div>
+                            <div class="badge bg-yellow-100 text-yellow-800 w-full justify-center text-xs">
+                                60-day trial • $60 license
+                            </div>
+                        </div>
+                        <div class="space-y-2">
+                            <a href="https://www.reaper.fm/guides.php" target="_blank" class="block text-center bg-purple-100 text-purple-700 py-2 rounded hover:bg-purple-200 transition text-sm">
+                                <i class="fas fa-book mr-1"></i>Documentation
+                            </a>
+                            <a href="https://www.youtube.com/results?search_query=reaper+podcast+tutorial" target="_blank" class="block text-center bg-red-100 text-red-700 py-2 rounded hover:bg-red-200 transition text-sm">
+                                <i class="fab fa-youtube mr-1"></i>Tutorials
+                            </a>
+                            <a href="#reaper-guide" class="block text-center bg-blue-100 text-blue-700 py-2 rounded hover:bg-blue-200 transition text-sm">
+                                <i class="fas fa-cog mr-1"></i>Setup Guide
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Voicemeeter -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover">
+                    <div class="p-6">
+                        <div class="text-4xl text-center mb-4">
+                            <i class="fas fa-sliders-h text-green-600"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-center text-gray-800 mb-2">Voicemeeter Banana</h3>
+                        <p class="text-gray-600 text-center mb-4">Virtual Audio Mixer</p>
+                        <div class="space-y-2 mb-4">
+                            <div class="badge bg-green-100 text-green-800 w-full justify-center">
+                                <i class="fas fa-check-circle mr-2"></i>Installed
+                            </div>
+                            <div class="badge bg-red-100 text-red-800 w-full justify-center text-xs">
+                                Requires restart!
+                            </div>
+                        </div>
+                        <div class="space-y-2">
+                            <a href="https://voicemeeter.com/" target="_blank" class="block text-center bg-purple-100 text-purple-700 py-2 rounded hover:bg-purple-200 transition text-sm">
+                                <i class="fas fa-book mr-1"></i>Documentation
+                            </a>
+                            <a href="https://www.youtube.com/results?search_query=voicemeeter+banana+tutorial" target="_blank" class="block text-center bg-red-100 text-red-700 py-2 rounded hover:bg-red-200 transition text-sm">
+                                <i class="fab fa-youtube mr-1"></i>Tutorials
+                            </a>
+                            <a href="#voicemeeter-guide" class="block text-center bg-blue-100 text-blue-700 py-2 rounded hover:bg-blue-200 transition text-sm">
+                                <i class="fas fa-cog mr-1"></i>Setup Guide
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Descript -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover">
+                    <div class="p-6">
+                        <div class="text-4xl text-center mb-4">
+                            <i class="fas fa-robot text-pink-600"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-center text-gray-800 mb-2">Descript</h3>
+                        <p class="text-gray-600 text-center mb-4">AI Podcast Editor</p>
+                        <div class="space-y-2 mb-4">
+                            <div class="badge bg-yellow-100 text-yellow-800 w-full justify-center">
+                                <i class="fas fa-download mr-2"></i>Manual Download
+                            </div>
+                            <div class="badge bg-blue-100 text-blue-800 w-full justify-center text-xs">
+                                Free tier available
+                            </div>
+                        </div>
+                        <div class="space-y-2">
+                            <a href="https://www.descript.com/download" target="_blank" class="block text-center bg-pink-600 text-white py-2 rounded hover:bg-pink-700 transition text-sm font-medium">
+                                <i class="fas fa-download mr-1"></i>Download Descript
+                            </a>
+                            <a href="https://www.youtube.com/results?search_query=descript+tutorial" target="_blank" class="block text-center bg-red-100 text-red-700 py-2 rounded hover:bg-red-200 transition text-sm">
+                                <i class="fab fa-youtube mr-1"></i>Tutorials
+                            </a>
+                            <a href="#descript-guide" class="block text-center bg-blue-100 text-blue-700 py-2 rounded hover:bg-blue-200 transition text-sm">
+                                <i class="fas fa-cog mr-1"></i>Setup Guide
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- OBS Filter Setup -->
+        <section id="obs-filters" class="mb-20">
+            <h2 class="text-4xl font-bold text-gray-800 mb-8 flex items-center">
+                <i class="fas fa-sliders-h text-purple-600 mr-4"></i>
+                OBS Audio Filters Setup
+            </h2>
+
+            <div class="bg-white rounded-xl shadow-lg p-8">
+                <div class="mb-6">
+                    <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded">
+                        <p class="text-blue-800">
+                            <i class="fas fa-info-circle mr-2"></i>
+                            <strong>Important:</strong> Add these filters in the exact order shown for best results!
+                        </p>
+                    </div>
+                </div>
+
+                <div class="space-y-8">
+
+                    <!-- Filter 1: Noise Suppression -->
+                    <div class="border-l-4 border-purple-500 pl-6">
+                        <div class="flex items-center mb-3">
+                            <span class="bg-purple-500 text-white px-3 py-1 rounded-full text-sm font-bold mr-3">FILTER 1</span>
+                            <h3 class="text-2xl font-bold text-gray-800">Noise Suppression</h3>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-lg mb-3">
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <div class="text-sm text-gray-600 mb-1">Filter Type</div>
+                                    <div class="font-semibold">Noise Suppression</div>
+                                </div>
+                                <div>
+                                    <div class="text-sm text-gray-600 mb-1">Method</div>
+                                    <div class="font-semibold text-purple-600">RNNoise</div>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-2">
+                            <i class="fas fa-magic mr-2 text-purple-500"></i>
+                            Removes constant background noise like fans, AC, computer hum using AI
+                        </p>
+                        <a href="https://www.youtube.com/results?search_query=obs+noise+suppression+rnnoise" target="_blank" class="text-purple-600 hover:text-purple-800 text-sm font-medium">
+                            <i class="fab fa-youtube mr-1"></i>Watch Tutorial
+                        </a>
+                    </div>
+
+                    <!-- Filter 2: Noise Gate -->
+                    <div class="border-l-4 border-blue-500 pl-6">
+                        <div class="flex items-center mb-3">
+                            <span class="bg-blue-500 text-white px-3 py-1 rounded-full text-sm font-bold mr-3">FILTER 2</span>
+                            <h3 class="text-2xl font-bold text-gray-800">Noise Gate</h3>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-lg mb-3">
+                            <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                                <div>
+                                    <div class="text-sm text-gray-600 mb-1">Close Threshold</div>
+                                    <div class="font-semibold text-blue-600">-40 dB</div>
+                                </div>
+                                <div>
+                                    <div class="text-sm text-gray-600 mb-1">Open Threshold</div>
+                                    <div class="font-semibold text-blue-600">-35 dB</div>
+                                </div>
+                                <div>
+                                    <div class="text-sm text-gray-600 mb-1">Attack Time</div>
+                                    <div class="font-semibold">25 ms</div>
+                                </div>
+                                <div>
+                                    <div class="text-sm text-gray-600 mb-1">Hold Time</div>
+                                    <div class="font-semibold">200 ms</div>
+                                </div>
+                                <div>
+                                    <div class="text-sm text-gray-600 mb-1">Release Time</div>
+                                    <div class="font-semibold">150 ms</div>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-2">
+                            <i class="fas fa-door-closed mr-2 text-blue-500"></i>
+                            Cuts audio when you're not speaking to prevent background noise between sentences
+                        </p>
+                        <a href="https://www.youtube.com/results?search_query=obs+noise+gate+tutorial" target="_blank" class="text-blue-600 hover:text-blue-800 text-sm font-medium">
+                            <i class="fab fa-youtube mr-1"></i>Watch Tutorial
+                        </a>
+                    </div>
+
+                    <!-- Filter 3: Compressor -->
+                    <div class="border-l-4 border-green-500 pl-6">
+                        <div class="flex items-center mb-3">
+                            <span class="bg-green-500 text-white px-3 py-1 rounded-full text-sm font-bold mr-3">FILTER 3</span>
+                            <h3 class="text-2xl font-bold text-gray-800">Compressor</h3>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-lg mb-3">
+                            <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                                <div>
+                                    <div class="text-sm text-gray-600 mb-1">Ratio</div>
+                                    <div class="font-semibold text-green-600">4:1</div>
+                                </div>
+                                <div>
+                                    <div class="text-sm text-gray-600 mb-1">Threshold</div>
+                                    <div class="font-semibold text-green-600">-20 dB</div>
+                                </div>
+                                <div>
+                                    <div class="text-sm text-gray-600 mb-1">Attack</div>
+                                    <div class="font-semibold">6 ms</div>
+                                </div>
+                                <div>
+                                    <div class="text-sm text-gray-600 mb-1">Release</div>
+                                    <div class="font-semibold">60 ms</div>
+                                </div>
+                                <div>
+                                    <div class="text-sm text-gray-600 mb-1">Output Gain</div>
+                                    <div class="font-semibold">0 dB</div>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-2">
+                            <i class="fas fa-compress-arrows-alt mr-2 text-green-500"></i>
+                            Makes quiet parts louder and loud parts quieter for consistent, professional audio
+                        </p>
+                        <a href="https://www.youtube.com/results?search_query=obs+compressor+tutorial" target="_blank" class="text-green-600 hover:text-green-800 text-sm font-medium">
+                            <i class="fab fa-youtube mr-1"></i>Watch Tutorial
+                        </a>
+                    </div>
+
+                    <!-- Filter 4: Limiter -->
+                    <div class="border-l-4 border-red-500 pl-6">
+                        <div class="flex items-center mb-3">
+                            <span class="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-bold mr-3">FILTER 4</span>
+                            <h3 class="text-2xl font-bold text-gray-800">Limiter</h3>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-lg mb-3">
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <div class="text-sm text-gray-600 mb-1">Threshold</div>
+                                    <div class="font-semibold text-red-600">-6 dB</div>
+                                </div>
+                                <div>
+                                    <div class="text-sm text-gray-600 mb-1">Release Time</div>
+                                    <div class="font-semibold">60 ms</div>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-2">
+                            <i class="fas fa-shield-alt mr-2 text-red-500"></i>
+                            Prevents audio from clipping (distorting) - acts as a safety net for loud sounds
+                        </p>
+                        <a href="https://www.youtube.com/results?search_query=obs+limiter+tutorial" target="_blank" class="text-red-600 hover:text-red-800 text-sm font-medium">
+                            <i class="fab fa-youtube mr-1"></i>Watch Tutorial
+                        </a>
+                    </div>
+
+                </div>
+
+                <div class="mt-8 bg-gradient-to-r from-purple-50 to-blue-50 p-6 rounded-lg">
+                    <h4 class="font-bold text-gray-800 mb-3 flex items-center">
+                        <i class="fas fa-lightbulb text-yellow-500 mr-2"></i>
+                        Pro Tips
+                    </h4>
+                    <ul class="space-y-2 text-gray-700">
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Filter order matters! Keep them in this exact order</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Adjust Noise Gate thresholds based on your room (noisy = lower, quiet = higher)</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Always test with a 30-second recording before your actual podcast</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Watch your audio meters - aim for green/yellow, avoid red!</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Workflow Section -->
+        <section id="workflow" class="mb-20">
+            <h2 class="text-4xl font-bold text-gray-800 mb-8 flex items-center">
+                <i class="fas fa-project-diagram text-purple-600 mr-4"></i>
+                Podcast Workflow
+            </h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+                <!-- Pre-Recording -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+                    <div class="bg-gradient-to-r from-blue-600 to-blue-800 p-4 text-white">
+                        <h3 class="text-xl font-bold flex items-center">
+                            <i class="fas fa-clipboard-check mr-2"></i>
+                            Pre-Recording
+                        </h3>
+                    </div>
+                    <div class="p-6">
+                        <ul class="space-y-3 text-gray-700">
+                            <li class="flex items-start">
+                                <i class="fas fa-circle text-blue-500 text-xs mt-1.5 mr-3"></i>
+                                <span>Connect Q802USB and test mic levels</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-circle text-blue-500 text-xs mt-1.5 mr-3"></i>
+                                <span>Open OBS and check audio filters are enabled</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-circle text-blue-500 text-xs mt-1.5 mr-3"></i>
+                                <span>Do 30-second test recording</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-circle text-blue-500 text-xs mt-1.5 mr-3"></i>
+                                <span>Listen to test and adjust levels if needed</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-circle text-blue-500 text-xs mt-1.5 mr-3"></i>
+                                <span>Prepare notes and talking points</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Recording -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+                    <div class="bg-gradient-to-r from-red-600 to-red-800 p-4 text-white">
+                        <h3 class="text-xl font-bold flex items-center">
+                            <i class="fas fa-record-vinyl mr-2"></i>
+                            Recording
+                        </h3>
+                    </div>
+                    <div class="p-6">
+                        <ul class="space-y-3 text-gray-700">
+                            <li class="flex items-start">
+                                <i class="fas fa-circle text-red-500 text-xs mt-1.5 mr-3"></i>
+                                <span>Click "Start Recording" in OBS</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-circle text-red-500 text-xs mt-1.5 mr-3"></i>
+                                <span>Monitor audio levels (green/yellow = good, red = bad)</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-circle text-red-500 text-xs mt-1.5 mr-3"></i>
+                                <span>Maintain consistent mic distance (6-8 inches)</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-circle text-red-500 text-xs mt-1.5 mr-3"></i>
+                                <span>Don't worry about mistakes - edit later!</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-circle text-red-500 text-xs mt-1.5 mr-3"></i>
+                                <span>Click "Stop Recording" when done</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Post-Production -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+                    <div class="bg-gradient-to-r from-green-600 to-green-800 p-4 text-white">
+                        <h3 class="text-xl font-bold flex items-center">
+                            <i class="fas fa-cut mr-2"></i>
+                            Post-Production
+                        </h3>
+                    </div>
+                    <div class="p-6">
+                        <ul class="space-y-3 text-gray-700">
+                            <li class="flex items-start">
+                                <i class="fas fa-circle text-green-500 text-xs mt-1.5 mr-3"></i>
+                                <span>Import recording into Audacity or Descript</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-circle text-green-500 text-xs mt-1.5 mr-3"></i>
+                                <span>Remove long pauses and mistakes</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-circle text-green-500 text-xs mt-1.5 mr-3"></i>
+                                <span>Add intro/outro music if desired</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-circle text-green-500 text-xs mt-1.5 mr-3"></i>
+                                <span>Normalize audio levels</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-circle text-green-500 text-xs mt-1.5 mr-3"></i>
+                                <span>Export as MP3 and publish!</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Film Podcast Specific Tips -->
+        <section id="film-podcast-tips" class="mb-20">
+            <h2 class="text-4xl font-bold text-gray-800 mb-8 flex items-center">
+                <i class="fas fa-film text-purple-600 mr-4"></i>
+                Film Podcast Tips for Cinephiles
+            </h2>
+
+            <div class="bg-gradient-to-r from-red-50 to-yellow-50 rounded-xl shadow-lg p-8 mb-8">
+                <div class="flex items-center mb-6">
+                    <div class="text-5xl mr-4">🎬</div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-gray-800">Tips for Movie Review Podcasts</h3>
+                        <p class="text-gray-600">Elevate your film discussion with these pro tips</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Audio Tips -->
+                    <div>
+                        <h4 class="text-lg font-bold text-gray-800 mb-4 flex items-center">
+                            <i class="fas fa-microphone text-purple-600 mr-2"></i>
+                            Recording Tips
+                        </h4>
+                        <ul class="space-y-3 text-gray-700">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                                <div>
+                                    <strong>Two-Host Setup:</strong> Use two mics (both to Q802USB channels) for you and your co-host. Pan one left, one right for stereo separation.
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                                <div>
+                                    <strong>Watch Party Recording:</strong> Use Voicemeeter to route movie audio to OBS while recording your commentary - perfect for reaction content!
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                                <div>
+                                    <strong>Clip Audio:</strong> Record movie clips/dialogue separately to insert during discussion (check copyright for fair use!)
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Content Tips -->
+                    <div>
+                        <h4 class="text-lg font-bold text-gray-800 mb-4 flex items-center">
+                            <i class="fas fa-clapperboard text-red-600 mr-2"></i>
+                            Content Ideas
+                        </h4>
+                        <ul class="space-y-3 text-gray-700">
+                            <li class="flex items-start">
+                                <i class="fas fa-star text-yellow-500 mt-1 mr-3"></i>
+                                <div>
+                                    <strong>Review Format:</strong> Structure episodes with intro, plot summary (no spoilers!), analysis, rating, spoiler discussion
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-star text-yellow-500 mt-1 mr-3"></i>
+                                <div>
+                                    <strong>Series Episodes:</strong> Director retrospectives, genre deep-dives, themed months (Horror October!)
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-star text-yellow-500 mt-1 mr-3"></i>
+                                <div>
+                                    <strong>Guest Episodes:</strong> Use Discord to interview filmmakers, critics, or fellow cinephiles remotely
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Workflow for Film Podcasts -->
+            <div class="bg-white rounded-xl shadow-lg p-8 mb-8">
+                <h3 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                    <i class="fas fa-list-check text-blue-600 mr-3"></i>
+                    Film Podcast Episode Workflow
+                </h3>
+
+                <div class="space-y-6">
+                    <div class="border-l-4 border-purple-500 pl-4">
+                        <h4 class="font-bold text-gray-800 mb-2">📝 Pre-Episode (1-2 days before)</h4>
+                        <ul class="text-gray-600 space-y-1">
+                            <li>• Watch the film (both hosts if co-hosting)</li>
+                            <li>• Take notes on key scenes, themes, cinematography</li>
+                            <li>• Research director, cast, production facts</li>
+                            <li>• Prepare discussion outline (avoid scripting - keep it natural!)</li>
+                            <li>• Find movie clips or soundtrack to use (fair use)</li>
+                        </ul>
+                    </div>
+
+                    <div class="border-l-4 border-blue-500 pl-4">
+                        <h4 class="font-bold text-gray-800 mb-2">🎙️ Recording Day</h4>
+                        <ul class="text-gray-600 space-y-1">
+                            <li>• Test equipment 15 minutes before recording</li>
+                            <li>• Have notes/outline visible (second monitor recommended)</li>
+                            <li>• Record 30-second room tone (for editing background noise)</li>
+                            <li>• Start with energetic intro - set the vibe!</li>
+                            <li>• Don't restart for mistakes - edit them out later</li>
+                        </ul>
+                    </div>
+
+                    <div class="border-l-4 border-green-500 pl-4">
+                        <h4 class="font-bold text-gray-800 mb-2">✂️ Editing</h4>
+                        <ul class="text-gray-600 space-y-1">
+                            <li>• Remove long pauses, "ums", false starts</li>
+                            <li>• Add intro music (royalty-free or licensed)</li>
+                            <li>• Insert movie clips/soundbites where relevant</li>
+                            <li>• Add "spoiler warning" sound effect before spoiler section</li>
+                            <li>• Normalize audio levels in Audacity or Descript</li>
+                            <li>• Export as MP3 (128-192 kbps is standard for podcasts)</li>
+                        </ul>
+                    </div>
+
+                    <div class="border-l-4 border-red-500 pl-4">
+                        <h4 class="font-bold text-gray-800 mb-2">🚀 Publishing</h4>
+                        <ul class="text-gray-600 space-y-1">
+                            <li>• Create episode artwork (movie poster + podcast branding)</li>
+                            <li>• Write show notes with timestamps for key moments</li>
+                            <li>• Upload to podcast host (Buzzsprout, Anchor, Libsyn)</li>
+                            <li>• Share on social media with film stills/quotes</li>
+                            <li>• Engage with listeners in comments!</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Music & Sound Effects -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4 flex items-center">
+                        <i class="fas fa-music text-purple-600 mr-3"></i>
+                        Royalty-Free Music Sources
+                    </h3>
+                    <p class="text-gray-600 mb-4 text-sm">Use these for intro/outro music and background</p>
+                    <ul class="space-y-2">
+                        <li>
+                            <a href="https://www.epidemicsound.com/" target="_blank" class="text-purple-600 hover:text-purple-800 flex items-center text-sm">
+                                <i class="fas fa-external-link-alt mr-2"></i>
+                                Epidemic Sound (paid, high quality)
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.youtube.com/audiolibrary" target="_blank" class="text-purple-600 hover:text-purple-800 flex items-center text-sm">
+                                <i class="fas fa-external-link-alt mr-2"></i>
+                                YouTube Audio Library (free)
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://freemusicarchive.org/" target="_blank" class="text-purple-600 hover:text-purple-800 flex items-center text-sm">
+                                <i class="fas fa-external-link-alt mr-2"></i>
+                                Free Music Archive
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://incompetech.com/" target="_blank" class="text-purple-600 hover:text-purple-800 flex items-center text-sm">
+                                <i class="fas fa-external-link-alt mr-2"></i>
+                                Incompetech (free with attribution)
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4 flex items-center">
+                        <i class="fas fa-volume-up text-blue-600 mr-3"></i>
+                        Sound Effects Resources
+                    </h3>
+                    <p class="text-gray-600 mb-4 text-sm">Add polish with sound effects (film reels, spoiler warnings, etc.)</p>
+                    <ul class="space-y-2">
+                        <li>
+                            <a href="https://freesound.org/" target="_blank" class="text-blue-600 hover:text-blue-800 flex items-center text-sm">
+                                <i class="fas fa-external-link-alt mr-2"></i>
+                                Freesound.org (huge library)
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.zapsplat.com/" target="_blank" class="text-blue-600 hover:text-blue-800 flex items-center text-sm">
+                                <i class="fas fa-external-link-alt mr-2"></i>
+                                Zapsplat (free with attribution)
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.soundjay.com/" target="_blank" class="text-blue-600 hover:text-blue-800 flex items-center text-sm">
+                                <i class="fas fa-external-link-alt mr-2"></i>
+                                SoundJay
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.youtube.com/audiolibrary" target="_blank" class="text-blue-600 hover:text-blue-800 flex items-center text-sm">
+                                <i class="fas fa-external-link-alt mr-2"></i>
+                                YouTube Audio Library (SFX tab)
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Video Production Setups -->
+            <div class="bg-white rounded-xl shadow-lg p-8 mb-8">
+                <h3 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                    <i class="fas fa-video text-red-600 mr-3"></i>
+                    Video Production Setups for Film Podcasts
+                </h3>
+
+                <div class="space-y-6">
+                    <!-- Setup 1: Picture-in-Picture Watch Party -->
+                    <div class="border-2 border-purple-200 rounded-lg p-6 bg-purple-50">
+                        <h4 class="text-xl font-bold text-purple-900 mb-4 flex items-center">
+                            <i class="fas fa-film mr-2"></i>
+                            Setup 1: Picture-in-Picture Watch Party Style
+                        </h4>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <h5 class="font-semibold text-gray-800 mb-3">Equipment Setup:</h5>
+                                <ul class="space-y-2 text-gray-700">
+                                    <li class="flex items-start">
+                                        <i class="fas fa-camera text-purple-600 mt-1 mr-2"></i>
+                                        <div><strong>Logitech Webcam</strong> on tripod pointing at hosts</div>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-circle-notch text-yellow-600 mt-1 mr-2"></i>
+                                        <div><strong>14" Ring Light</strong> on separate tripod for even lighting</div>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-microphone-stand text-blue-600 mt-1 mr-2"></i>
+                                        <div><strong>XLR Mics</strong> on spring-loaded boom arms</div>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-film text-red-600 mt-1 mr-2"></i>
+                                        <div><strong>Movie playing in Plex</strong> (same computer)</div>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div>
+                                <h5 class="font-semibold text-gray-800 mb-3">OBS Configuration:</h5>
+                                <div class="bg-white p-4 rounded-lg">
+                                    <ol class="space-y-2 text-sm text-gray-700">
+                                        <li><strong>1.</strong> Add <strong>Display Capture</strong> source (captures Plex movie)</li>
+                                        <li><strong>2.</strong> Add <strong>Video Capture Device</strong> (Logitech webcam)</li>
+                                        <li><strong>3.</strong> Right-click webcam → Transform → Edit Transform</li>
+                                        <li><strong>4.</strong> Position webcam as overlay in corner (Picture-in-Picture)</li>
+                                        <li><strong>5.</strong> Add border to webcam for visual separation</li>
+                                        <li><strong>6.</strong> Audio from Q802USB, movie audio from Desktop Audio</li>
+                                    </ol>
+                                </div>
+                                <div class="mt-3 bg-blue-50 p-3 rounded text-sm text-blue-800">
+                                    <i class="fas fa-lightbulb mr-1"></i>
+                                    <strong>Pro Tip:</strong> Lower movie audio to -15 dB so voices are clear over the film!
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Setup 2: Green Screen / Chroma Key -->
+                    <div class="border-2 border-green-200 rounded-lg p-6 bg-green-50">
+                        <h4 class="text-xl font-bold text-green-900 mb-4 flex items-center">
+                            <i class="fas fa-user text-green-600 mr-2"></i>
+                            Setup 2: Talking Head with Chroma Key (Green Screen)
+                        </h4>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <h5 class="font-semibold text-gray-800 mb-3">Background Options:</h5>
+                                <ul class="space-y-3 text-gray-700">
+                                    <li class="flex items-start">
+                                        <i class="fas fa-square text-green-500 mt-1 mr-2"></i>
+                                        <div>
+                                            <strong>Green Screen:</strong> Professional chroma key background
+                                            <div class="text-sm text-gray-600">Best results, easy to key out</div>
+                                        </div>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-square text-blue-500 mt-1 mr-2"></i>
+                                        <div>
+                                            <strong>Colored Sheet:</strong> Hang solid color sheet on wall
+                                            <div class="text-sm text-gray-600">Budget option - use bright green or blue</div>
+                                        </div>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-square text-gray-400 mt-1 mr-2"></i>
+                                        <div>
+                                            <strong>White Wall:</strong> Use for simple backgrounds
+                                            <div class="text-sm text-gray-600">Can replace with images/videos in OBS</div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div>
+                                <h5 class="font-semibold text-gray-800 mb-3">OBS Chroma Key Setup:</h5>
+                                <div class="bg-white p-4 rounded-lg">
+                                    <ol class="space-y-2 text-sm text-gray-700">
+                                        <li><strong>1.</strong> Add <strong>Video Capture Device</strong> (webcam)</li>
+                                        <li><strong>2.</strong> Right-click webcam source → <strong>Filters</strong></li>
+                                        <li><strong>3.</strong> Click <strong>+</strong> → <strong>Chroma Key</strong></li>
+                                        <li><strong>4.</strong> Select green/blue color to remove</li>
+                                        <li><strong>5.</strong> Adjust Similarity (400-500) and Smoothness (80-150)</li>
+                                        <li><strong>6.</strong> Add background image/video layer BEHIND webcam</li>
+                                    </ol>
+                                </div>
+                                <div class="mt-3 bg-yellow-50 p-3 rounded text-sm text-yellow-800">
+                                    <i class="fas fa-exclamation-circle mr-1"></i>
+                                    <strong>Lighting is KEY!</strong> Even lighting on green screen prevents shadows/spill
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-4 bg-white p-4 rounded-lg">
+                            <h5 class="font-semibold text-gray-800 mb-2">Background Ideas for Film Podcasts:</h5>
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-3 text-sm">
+                                <div class="bg-purple-50 p-2 rounded text-center">
+                                    <i class="fas fa-image text-purple-600 mb-1"></i>
+                                    <div class="font-medium">Movie Posters</div>
+                                </div>
+                                <div class="bg-red-50 p-2 rounded text-center">
+                                    <i class="fas fa-video text-red-600 mb-1"></i>
+                                    <div class="font-medium">Film Clips Loop</div>
+                                </div>
+                                <div class="bg-blue-50 p-2 rounded text-center">
+                                    <i class="fas fa-film text-blue-600 mb-1"></i>
+                                    <div class="font-medium">Cinema Graphics</div>
+                                </div>
+                                <div class="bg-gray-100 p-2 rounded text-center">
+                                    <i class="fas fa-palette text-gray-600 mb-1"></i>
+                                    <div class="font-medium">Solid Colors</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Lighting Tips -->
+                    <div class="bg-gradient-to-r from-yellow-50 to-orange-50 p-6 rounded-lg">
+                        <h4 class="text-xl font-bold text-gray-800 mb-4 flex items-center">
+                            <i class="fas fa-lightbulb text-yellow-600 mr-2"></i>
+                            Lighting Setup Tips
+                        </h4>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div>
+                                <h5 class="font-semibold text-gray-800 mb-2">Ring Light Position</h5>
+                                <ul class="text-sm text-gray-700 space-y-1">
+                                    <li>• Place directly in front, above camera</li>
+                                    <li>• Adjust height to eye level</li>
+                                    <li>• Creates even, flattering light</li>
+                                    <li>• Eliminates harsh shadows</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h5 class="font-semibold text-gray-800 mb-2">For Green Screen</h5>
+                                <ul class="text-sm text-gray-700 space-y-1">
+                                    <li>• Light the background separately</li>
+                                    <li>• Avoid shadows on green screen</li>
+                                    <li>• Stand 3-4 feet from background</li>
+                                    <li>• Use diffused light if possible</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h5 class="font-semibold text-gray-800 mb-2">Camera Settings</h5>
+                                <ul class="text-sm text-gray-700 space-y-1">
+                                    <li>• 1080p 30fps minimum</li>
+                                    <li>• Disable auto-focus (manual focus)</li>
+                                    <li>• Lower exposure if too bright</li>
+                                    <li>• Use Logitech Capture app for control</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Advanced: Multi-Cam Setup -->
+                    <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded">
+                        <h5 class="font-bold text-blue-900 mb-2 flex items-center">
+                            <i class="fas fa-camera-retro mr-2"></i>
+                            Advanced: Multi-Camera Angles
+                        </h5>
+                        <p class="text-blue-800 text-sm mb-2">
+                            If you have 2+ cameras, add multiple "Video Capture Device" sources in OBS. Switch between angles during editing or live with hotkeys!
+                        </p>
+                        <a href="https://www.youtube.com/results?search_query=obs+multi+camera+setup" target="_blank" class="text-blue-700 hover:text-blue-900 text-sm font-medium">
+                            <i class="fab fa-youtube mr-1"></i>Watch Multi-Cam Tutorials
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Copyright Tips -->
+            <div class="mt-8 bg-yellow-50 border-l-4 border-yellow-500 p-6 rounded-lg">
+                <h4 class="font-bold text-yellow-900 mb-3 flex items-center">
+                    <i class="fas fa-exclamation-triangle mr-2"></i>
+                    Copyright & Fair Use for Film Podcasts
+                </h4>
+                <div class="text-yellow-800 space-y-2">
+                    <p><strong>✅ Generally OK (Fair Use):</strong></p>
+                    <ul class="ml-6 space-y-1 text-sm">
+                        <li>• Short audio clips from movies for review/commentary (10-30 seconds)</li>
+                        <li>• Discussing plot, themes, cinematography</li>
+                        <li>• Movie posters in episode artwork (transformative use)</li>
+                    </ul>
+                    <p class="mt-3"><strong>❌ NOT OK:</strong></p>
+                    <ul class="ml-6 space-y-1 text-sm">
+                        <li>• Playing entire movie soundtrack in background</li>
+                        <li>• Extended movie clips (over 1 minute)</li>
+                        <li>• Using copyrighted music without license</li>
+                    </ul>
+                    <p class="mt-3 text-sm"><i class="fas fa-info-circle mr-1"></i> <strong>Tip:</strong> When in doubt, seek legal advice. Fair use is complex!</p>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Troubleshooting -->
+        <section id="troubleshooting" class="mb-20">
+            <h2 class="text-4xl font-bold text-gray-800 mb-8 flex items-center">
+                <i class="fas fa-tools text-purple-600 mr-4"></i>
+                Troubleshooting
+            </h2>
+
+            <div class="space-y-4">
+
+                <!-- Q802USB Not Detected -->
+                <div class="bg-white rounded-lg shadow-lg">
+                    <button class="w-full p-6 text-left flex items-center justify-between hover:bg-gray-50 transition"
+                            onclick="this.parentElement.querySelector('.answer').classList.toggle('hidden')">
+                        <span class="text-lg font-semibold text-gray-800">
+                            <i class="fas fa-question-circle text-red-500 mr-3"></i>
+                            Q802USB not detected by Windows
+                        </span>
+                        <i class="fas fa-chevron-down text-gray-400"></i>
+                    </button>
+                    <div class="answer hidden p-6 pt-0 text-gray-600">
+                        <ul class="space-y-2">
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Try different USB ports (prefer USB 2.0/3.0 on back panel)</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Try a different USB cable</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Wait 1-2 minutes for Windows to install drivers</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Restart computer with Q802USB connected</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Check Device Manager for "USB Audio CODEC"</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- No Audio in OBS -->
+                <div class="bg-white rounded-lg shadow-lg">
+                    <button class="w-full p-6 text-left flex items-center justify-between hover:bg-gray-50 transition"
+                            onclick="this.parentElement.querySelector('.answer').classList.toggle('hidden')">
+                        <span class="text-lg font-semibold text-gray-800">
+                            <i class="fas fa-question-circle text-orange-500 mr-3"></i>
+                            No audio showing in OBS
+                        </span>
+                        <i class="fas fa-chevron-down text-gray-400"></i>
+                    </button>
+                    <div class="answer hidden p-6 pt-0 text-gray-600">
+                        <ul class="space-y-2">
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Check Windows default recording device is set to "USB Audio CODEC"</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>In OBS Settings → Audio, set "Mic/Auxiliary Audio" to Q802USB</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Check Q802USB mixer: GAIN up, channel fader up, MAIN MIX up</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Make sure mute button is NOT pressed on mixer</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Speak loudly into mic and watch OBS audio meter</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Audio Distorted -->
+                <div class="bg-white rounded-lg shadow-lg">
+                    <button class="w-full p-6 text-left flex items-center justify-between hover:bg-gray-50 transition"
+                            onclick="this.parentElement.querySelector('.answer').classList.toggle('hidden')">
+                        <span class="text-lg font-semibold text-gray-800">
+                            <i class="fas fa-question-circle text-yellow-500 mr-3"></i>
+                            Audio sounds distorted or clipping
+                        </span>
+                        <i class="fas fa-chevron-down text-gray-400"></i>
+                    </button>
+                    <div class="answer hidden p-6 pt-0 text-gray-600">
+                        <ul class="space-y-2">
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Lower GAIN on Q802USB mixer</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Lower MAIN MIX fader</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>In OBS, audio meter should NOT hit red</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Aim for green with occasional yellow peaks</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Move microphone further from mouth (8-10 inches)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Too Quiet -->
+                <div class="bg-white rounded-lg shadow-lg">
+                    <button class="w-full p-6 text-left flex items-center justify-between hover:bg-gray-50 transition"
+                            onclick="this.parentElement.querySelector('.answer').classList.toggle('hidden')">
+                        <span class="text-lg font-semibold text-gray-800">
+                            <i class="fas fa-question-circle text-blue-500 mr-3"></i>
+                            Audio is too quiet
+                        </span>
+                        <i class="fas fa-chevron-down text-gray-400"></i>
+                    </button>
+                    <div class="answer hidden p-6 pt-0 text-gray-600">
+                        <ul class="space-y-2">
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Increase GAIN on Q802USB mixer</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Raise channel fader to near 0 dB</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Raise MAIN MIX fader</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Check XLR cable is firmly connected to mic and mixer</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Move microphone closer (6 inches from mouth)</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>In OBS Compressor, increase Output Gain to +5 dB</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Background Noise -->
+                <div class="bg-white rounded-lg shadow-lg">
+                    <button class="w-full p-6 text-left flex items-center justify-between hover:bg-gray-50 transition"
+                            onclick="this.parentElement.querySelector('.answer').classList.toggle('hidden')">
+                        <span class="text-lg font-semibold text-gray-800">
+                            <i class="fas fa-question-circle text-purple-500 mr-3"></i>
+                            Too much background noise
+                        </span>
+                        <i class="fas fa-chevron-down text-gray-400"></i>
+                    </button>
+                    <div class="answer hidden p-6 pt-0 text-gray-600">
+                        <ul class="space-y-2">
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Make sure Noise Suppression filter is enabled in OBS</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Adjust Noise Gate threshold (lower = more aggressive)</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Lower GAIN on unused mixer channels</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Record in a quieter room or use sound dampening</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Position mic correctly - dynamic mics need close placement (6-8 inches)</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Resources -->
+        <section id="resources" class="mb-20">
+            <h2 class="text-4xl font-bold text-gray-800 mb-8 flex items-center">
+                <i class="fas fa-book text-purple-600 mr-4"></i>
+                Additional Resources
+            </h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+                <!-- Official Documentation -->
+                <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4 flex items-center">
+                        <i class="fas fa-file-alt text-blue-600 mr-3"></i>
+                        Official Documentation
+                    </h3>
+                    <ul class="space-y-3">
+                        <li>
+                            <a href="https://www.behringer.com/product.html?modelCode=P0ALZ" target="_blank" class="text-purple-600 hover:text-purple-800 flex items-center">
+                                <i class="fas fa-external-link-alt mr-2 text-sm"></i>
+                                Behringer Q802USB Manual
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://obsproject.com/wiki/" target="_blank" class="text-purple-600 hover:text-purple-800 flex items-center">
+                                <i class="fas fa-external-link-alt mr-2 text-sm"></i>
+                                OBS Studio Documentation
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://manual.audacityteam.org/" target="_blank" class="text-purple-600 hover:text-purple-800 flex items-center">
+                                <i class="fas fa-external-link-alt mr-2 text-sm"></i>
+                                Audacity Manual
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.reaper.fm/guides.php" target="_blank" class="text-purple-600 hover:text-purple-800 flex items-center">
+                                <i class="fas fa-external-link-alt mr-2 text-sm"></i>
+                                Reaper User Guide
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://voicemeeter.com/" target="_blank" class="text-purple-600 hover:text-purple-800 flex items-center">
+                                <i class="fas fa-external-link-alt mr-2 text-sm"></i>
+                                Voicemeeter Documentation
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Video Tutorials -->
+                <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4 flex items-center">
+                        <i class="fab fa-youtube text-red-600 mr-3"></i>
+                        Video Tutorials
+                    </h3>
+                    <ul class="space-y-3">
+                        <li>
+                            <a href="https://www.youtube.com/results?search_query=podcast+setup+tutorial" target="_blank" class="text-red-600 hover:text-red-800 flex items-center">
+                                <i class="fab fa-youtube mr-2 text-sm"></i>
+                                Complete Podcast Setup
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.youtube.com/results?search_query=obs+podcast+recording" target="_blank" class="text-red-600 hover:text-red-800 flex items-center">
+                                <i class="fab fa-youtube mr-2 text-sm"></i>
+                                OBS Podcast Recording
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.youtube.com/results?search_query=audio+mixing+tutorial" target="_blank" class="text-red-600 hover:text-red-800 flex items-center">
+                                <i class="fab fa-youtube mr-2 text-sm"></i>
+                                Audio Mixing Basics
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.youtube.com/results?search_query=xlr+microphone+technique" target="_blank" class="text-red-600 hover:text-red-800 flex items-center">
+                                <i class="fab fa-youtube mr-2 text-sm"></i>
+                                Microphone Technique
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.youtube.com/results?search_query=podcast+editing+tips" target="_blank" class="text-red-600 hover:text-red-800 flex items-center">
+                                <i class="fab fa-youtube mr-2 text-sm"></i>
+                                Podcast Editing Tips
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="gradient-bg text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="mb-4">
+                <i class="fas fa-microphone-alt text-5xl mb-4"></i>
+            </div>
+            <h3 class="text-2xl font-bold mb-2">Happy Podcasting!</h3>
+            <p class="text-purple-100 mb-6">
+                Created with <i class="fas fa-heart text-red-400"></i> for awesome podcast content creators
+            </p>
+            <div class="flex justify-center space-x-6 text-sm">
+                <a href="#quick-start" class="hover:text-purple-200 transition">Quick Start</a>
+                <a href="#equipment" class="hover:text-purple-200 transition">Equipment</a>
+                <a href="#software" class="hover:text-purple-200 transition">Software</a>
+                <a href="#troubleshooting" class="hover:text-purple-200 transition">Troubleshooting</a>
+            </div>
+            <div class="mt-6 text-purple-200 text-sm">
+                <p>Generated with Claude Code • Last Updated: November 2025</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button id="scrollToTop"
+            class="fixed bottom-8 right-8 bg-purple-600 text-white p-4 rounded-full shadow-lg hover:bg-purple-700 transition hidden"
+            onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // Show/hide scroll to top button
+        window.addEventListener('scroll', function() {
+            const scrollButton = document.getElementById('scrollToTop');
+            if (window.scrollY > 300) {
+                scrollButton.classList.remove('hidden');
+            } else {
+                scrollButton.classList.add('hidden');
+            }
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
